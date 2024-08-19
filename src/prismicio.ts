@@ -6,14 +6,14 @@ export const repositoryName =
   process.env.NEXT_PUBLIC_PRISMIC_ENVIRONMENT || config.repositoryName;
 
 const routes: prismic.ClientConfig["routes"] = [
-  {
-  	type: "homepage",
-  	path: "/",
-  },
-  {
-  	type: "page",
-  	path: "/:uid",
-  },
+  // {
+  // 	type: "homepage",
+  // 	path: "/",
+  // },
+  // {
+  // 	type: "page",
+  // 	path: "/:uid",
+  // },
 ];
 
 /**
