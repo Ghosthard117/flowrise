@@ -1,8 +1,11 @@
+import "./globals.css";
 import type { Metadata } from "next";
 import { Nunito, Nunito_Sans } from "next/font/google";
 import clsx from "clsx";
-import "./globals.css";
 import { createClient } from "@/prismicio";
+
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -25,7 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       images: [settings.data.og_image.url || ""]
     }
-    
+
   };
 }
 
@@ -41,9 +44,9 @@ export default function RootLayout({
     >
       <body
       >
-        <header>header</header>
+        <Header />
         {children}
-        <footer>footer</footer>
+        <Footer />
       </body>
     </html>
   );
