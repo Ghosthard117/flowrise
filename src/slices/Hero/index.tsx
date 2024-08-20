@@ -1,19 +1,37 @@
+import Bounded from "@/components/Bounded";
+import Button from "@/components/Button";
+import Heading from "@/components/Heading";
 import { Content } from "@prismicio/client";
-import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
-import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
+import { PrismicNextImage } from "@prismicio/next";
+import { PrismicRichText, SliceComponentProps, JSXMapSerializer } from "@prismicio/react";
+
+const components: JSXMapSerializer = {
+  heading1: ({ children }) => (
+    <Heading
+      as="h1"
+      size="xl"
+      className="md:mb-8 mb-4 mt-12 first:mt-0 last:mb-0"
+    >
+      {children}
+    </Heading>
+  ),
+  paragraph: ({ children }) => (
+    <p
+      className="text-2xl text-slate-600 text-center font-normal leading-10 font-body mb-4 md:mb-8 max-w-md"
+    >
+      {children}
+    </p>
+  )
+}
 
 /**
  * Props for `Hero`.
  */
 export type HeroProps = SliceComponentProps<Content.HeroSlice>;
 
-/**
- * Component for "Hero" Slices.
- */
 const Hero = ({ slice }: HeroProps): JSX.Element => {
   return (
-    <section
-      className="px-4 py-10 md:py-14 md:px-6 lg:py-16"
+    <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >
@@ -25,41 +43,25 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
         >
           <PrismicRichText
             field={slice.primary.heading}
-            components={{
-              heading1: ({ children }) => (
-                <h1
-                  className="text-5xl md:text-7xl font-bold leading-tight tracking-tight font-display text-slate-700 text-center"
-                >
-                  {children}
-                </h1>
-              )
-            }}
+            components={components}
           />
           <PrismicRichText
             field={slice.primary.body}
-            components={{
-              paragraph: ({ children }) => (
-                <p
-                  className="text-2xl text-slate-600 text-center font-normal leading-10 font-body mb-4 md:mb-8 max-w-md"
-                >
-                  {children}
-                </p>
-              )
-            }}
+            components={components}
           />
-          <PrismicNextLink
+          <Button
             field={slice.primary.button_link}
-            className="block w-fit bg-cyan-700 hover:bg-cyan-800 transition-colors duration-200 ease-in-out py-3 px-12 font-display text-base text-white rounded-full tracking-wider mb-8 md:mb-10"
+            className="mb-8 md:mb-10"
           >
             {slice.primary.button_text}
-          </PrismicNextLink>
+          </Button>
           <PrismicNextImage
             field={slice.primary.image}
             className="drop-shadow-xl max-w-4xl w-full"
           />
         </div>
       </div>
-    </section>
+    </Bounded>
   );
 };
 
