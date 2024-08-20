@@ -17,7 +17,7 @@ const components: JSXMapSerializer = {
   ),
   paragraph: ({ children }) => (
     <p
-      className="text-2xl text-slate-600 text-center font-normal leading-10 font-body mb-4 md:mb-8 max-w-md"
+      className="text-2xl text-slate-600 font-normal leading-10 font-body mb-4 md:mb-8 max-w-md"
     >
       {children}
     </p>
